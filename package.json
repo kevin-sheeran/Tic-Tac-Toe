@@ -18,8 +18,12 @@
   },
   "homepage": "https://github.com/king-saddi/Tic-Tac-Toe",
   "dependencies": {
+    "angular": "^1.4.8",
+    "angular-ui-router": "^0.2.15",
     "express": "^4.13.3",
+    "json-server": "^0.8.3",
     "morgan": "^1.6.1",
+    "node-uuid": "^1.4.7",
     "serve-static": "^1.10.0"
   }
 }

@@ -1,22 +1,15 @@
-<!--
-Reference for index.html, style.css, app.js
-https://developer.apple.com/library/safari/samplecode/TicTacToe/Listings/ReadMe_txt.html#//apple_ref/doc/uid/DTS40010309-ReadMe_txt-DontLinkElementID_3
--->
-
-<!doctype html>
-
-<html>
+<html ng-app="ticApp">
     <head>
       <title>Tic Tac Toe</title>
       <meta name="viewport" content="width=600px" />
-      <link rel="stylesheet" href="style.css" type="text/css">
+      <link rel="stylesheet" href="css/style.css" type="text/css">
     </head>
-    <body onload="init();">  
-        <div id="players">
-          <div id="X" class="">Player X</div>
-          <div id="O" class="">Player O</div>
-          <input type="button" class="button" value="New Game">
-        </div>
+    <body ng-controller="ticController as toe">  
+        <header id="players">
+          <div>Current Player: {{toe.player1}}</div>
+          <button ng-click="toe.start()" >Start Game</button>
+            
+        </header>
         <table>
           <tr>
             <td id="0"></td>
@@ -35,6 +28,10 @@ https://developer.apple.com/library/safari/samplecode/TicTacToe/Listings/ReadMe_
           </tr>
         </table>
         
-        <script src="app.js" type="text/javascript"></script>
+        <!---<script src="/node_modules/angular/angular.js"></script> --->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+        <script src="js/ticApp.js"></script>
     </body>
 </html>
