@@ -6,25 +6,25 @@
     </head>
     <body ng-controller="ticController as toe">  
         <header id="players">
-          <div>Current Player: {{toe.player1}}</div>
+          <div>Current Players turn: {{toe.currentPlayer}}</div>
           <button ng-click="toe.start()" >Start Game</button>
             
         </header>
         <table>
           <tr>
-            <td id="0"></td>
-            <td id="1"></td>
-            <td id="2"></td>
+            <td id="0" ng-click="toe.select(id)"></td>
+            <td id="1" ng-click="toe.select()"></td>
+            <td id="2" ng-click="toe.select()"></td>
           </tr>
           <tr>
-            <td id="3"></td>
-            <td id="4"></td>
-            <td id="5"></td>
+            <td id="3" ng-click="toe.select()"></td>
+            <td id="4" ng-click="toe.select()"></td>
+            <td id="5" ng-click="toe.select()"></td>
           </tr>
           <tr>
-            <td id="6"></td>
-            <td id="7"></td>
-            <td id="8"></td>
+            <td id="6" ng-click="toe.select()"></td>
+            <td id="7" ng-click="toe.select()"></td>
+            <td id="8" ng-click="toe.select()"></td>
           </tr>
         </table>
         
