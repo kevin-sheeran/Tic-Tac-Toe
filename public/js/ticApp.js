@@ -2,7 +2,8 @@ angular.module('ticApp', [])
 	.controller('ticController', [function() {
 		var tic = this;
 		tic.moves = 0;
-		tic.over = false;
+        tic.rflag = false;
+        tic.sflag = true;
 		tic.player1 = "X";
 		tic.player2 = "O";
 		tic.currentPlayer = "";
@@ -36,8 +37,15 @@ angular.module('ticApp', [])
 			console.log('Started tic-tac-toe game.');
 			tic.currentPlayer = tic.player1;
 			resetBoard();
-			tic.over = false;
+            tic.sflag = false;
 		};
+        
+        tic.restart = function(){
+            console.log('Restarting tic-tac-toe game.');
+            tic.currentPlayer = tic.player1;
+            resetBoard();
+            tic.rflag = false;
+        }
 
 		tic.checkForWinner = function(){
 			// horizontal wins
@@ -50,20 +58,27 @@ angular.module('ticApp', [])
 			((tic.board[2] == tic.board[5] && tic.board[5] == tic.board[8]) && tic.board[2] != "") || 
 			// diagonal wins
 			((tic.board[0] == tic.board[4] && tic.board[4] == tic.board[8]) && tic.board[0] != "") || 
-			((tic.board[2] == tic.board[4] && tic.board[4] == tic.board[6]) && tic.board[2] != "")) {
-				tic.over = true;
+			((tic.board[2] == tic.board[4] && tic.board[4] == tic.board[6]) && tic.board[2] != "") ||
+            (tic.moves == 9)){
+				tic.endGame();
 			}
 		}
 		
 		tic.endGame = function() {
-			alert("The game is over, click start to play again!");
+            if(tic.moves == 9){
+                alert("DRAW! Click restart to play again.");
+                tic.moves = 0;
+                tic.rflag = true;
+            }
+            else{
+			    alert("Player " + tic.currentPlayer + " won! Click restart to play again.");
+                tic.moves = 0;
+                tic.rflag = true;
+            }
 		}
 		
 		tic.select = function(loc) {
-			if(tic.over) {
-				tic.endGame();
-			}
-			else if(tic.board[loc] != "") {
+			if(tic.board[loc] != "") {
 				alert("Please choose a different position!");
 			}
 			else {
@@ -71,12 +86,14 @@ angular.module('ticApp', [])
 				tic.board[loc] = tic.currentPlayer;
 
 				if (tic.currentPlayer == tic.player1) {
+                    tic.checkForWinner();
 					tic.currentPlayer = tic.player2;
 				}
 				else {
+                    tic.checkForWinner();
 					tic.currentPlayer = tic.player1;
 				}
-				tic.checkForWinner();
+				
 			}
 		};
 	}]);
