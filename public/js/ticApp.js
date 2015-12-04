@@ -78,23 +78,34 @@ angular.module('ticApp', [])
 		}
 		
 		tic.select = function(loc) {
-			if(tic.board[loc] != "") {
-				alert("Please choose a different position!");
-			}
-			else {
-				tic.moves++;
-				tic.board[loc] = tic.currentPlayer;
+            //so that user can't click on an empty square if someone has won or the game hasn't started yet
+            if(tic.sflag == true){
+                alert("The game has not started. Click start to begin");
+            } 
+            else if(tic.rflag == true){
+                alert("The game is over. Click restart to play again");
+            }
+            else{
+                
+                if(tic.board[loc] != "") {
+                    alert("Please choose a different position!");
+                }
 
-				if (tic.currentPlayer == tic.player1) {
-                    tic.checkForWinner();
-					tic.currentPlayer = tic.player2;
-				}
-				else {
-                    tic.checkForWinner();
-					tic.currentPlayer = tic.player1;
-				}
-				
-			}
+                else {
+                    tic.moves++;
+                    tic.board[loc] = tic.currentPlayer;
+
+                    if (tic.currentPlayer == tic.player1) {
+                        tic.checkForWinner();
+                        tic.currentPlayer = tic.player2;
+                    }
+                    else {
+                        tic.checkForWinner();
+                        tic.currentPlayer = tic.player1;
+                    }
+
+                }
+            }
 		};
 	}]);
 
