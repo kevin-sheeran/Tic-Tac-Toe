@@ -3,8 +3,8 @@ var morgan = require('morgan');
 var serveStatic = require('serve-static');
 var mongoose = require('mongoose');
 
-//mongoose.connect('mongodb://test:test@ds061974.mongolab.com:61974/ksks');
-/*
+mongoose.connect('mongodb://test:test@ds061974.mongolab.com:61974/ksks');
+
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
@@ -30,24 +30,22 @@ kunal.save(function(err) {
 
 var app = express();
 
-app.use('/mongot', function(req, res, next){
+//app.use(morgan('combined'));  //for logging
+
+app.use(serveStatic(__dirname + '/public'));
+
+app.use('/output', function(req, res, next){
     console.log('Request URL:' + req.url);
     
     User.find({}, function(err, users){
         if(err) throw err;
-        console.log(users);
         
+        console.log(users);
     });
     
     next();
 });
-*/
 
-var app = express();
-
-
-app.use(morgan('combined'));  //for logging
-app.use(serveStatic(__dirname + '/public'));
 
 var port = 3000;
 app.set('port', process.env.PORT || port);
